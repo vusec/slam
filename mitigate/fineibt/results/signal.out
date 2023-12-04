@@ -1,0 +1,306 @@
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.000%
+FineIBT SID =    caca0 |  1-deref-signal: 97.130%
+FineIBT SID mistrained |  1-deref-signal: 17.660%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.000%
+FineIBT SID =    caca0 |  2-deref-signal: 97.720%
+FineIBT SID mistrained |  2-deref-signal:  5.670%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.000%
+FineIBT SID =    caca0 |  3-deref-signal: 96.650%
+FineIBT SID mistrained |  3-deref-signal:  1.900%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 96.660%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 97.360%
+FineIBT SID mistrained |  5-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 96.780%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.000%
+FineIBT SID =    caca0 |  7-deref-signal: 97.140%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.000%
+FineIBT SID =    caca0 |  8-deref-signal: 97.140%
+FineIBT SID mistrained |  8-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.000%
+FineIBT SID =    caca0 |  9-deref-signal: 96.900%
+FineIBT SID mistrained |  9-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.000%
+FineIBT SID =    caca0 | 10-deref-signal: 97.050%
+FineIBT SID mistrained | 10-deref-signal:  0.000%
+
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.000%
+FineIBT SID =    caca0 |  1-deref-signal: 96.030%
+FineIBT SID mistrained |  1-deref-signal: 12.890%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.000%
+FineIBT SID =    caca0 |  2-deref-signal: 97.440%
+FineIBT SID mistrained |  2-deref-signal:  0.070%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.000%
+FineIBT SID =    caca0 |  3-deref-signal: 97.090%
+FineIBT SID mistrained |  3-deref-signal:  0.020%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 96.700%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 95.410%
+FineIBT SID mistrained |  5-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 96.210%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.000%
+FineIBT SID =    caca0 |  7-deref-signal: 95.910%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.000%
+FineIBT SID =    caca0 |  8-deref-signal: 97.390%
+FineIBT SID mistrained |  8-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.000%
+FineIBT SID =    caca0 |  9-deref-signal: 97.430%
+FineIBT SID mistrained |  9-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.010%
+FineIBT SID =    caca0 | 10-deref-signal: 96.900%
+FineIBT SID mistrained | 10-deref-signal:  0.000%
+
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.010%
+FineIBT SID =    caca0 |  1-deref-signal: 92.690%
+FineIBT SID mistrained |  1-deref-signal: 40.170%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.010%
+FineIBT SID =    caca0 |  2-deref-signal: 96.610%
+FineIBT SID mistrained |  2-deref-signal: 29.580%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.000%
+FineIBT SID =    caca0 |  3-deref-signal: 96.860%
+FineIBT SID mistrained |  3-deref-signal: 23.900%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 95.600%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 97.080%
+FineIBT SID mistrained |  5-deref-signal:  0.010%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 92.900%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.010%
+FineIBT SID =    caca0 |  7-deref-signal: 96.020%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.000%
+FineIBT SID =    caca0 |  8-deref-signal: 96.570%
+FineIBT SID mistrained |  8-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.000%
+FineIBT SID =    caca0 |  9-deref-signal: 96.330%
+FineIBT SID mistrained |  9-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.000%
+FineIBT SID =    caca0 | 10-deref-signal: 96.130%
+FineIBT SID mistrained | 10-deref-signal:  0.010%
+
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.000%
+FineIBT SID =    caca0 |  1-deref-signal: 97.730%
+FineIBT SID mistrained |  1-deref-signal: 50.290%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.000%
+FineIBT SID =    caca0 |  2-deref-signal: 96.780%
+FineIBT SID mistrained |  2-deref-signal: 31.710%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.000%
+FineIBT SID =    caca0 |  3-deref-signal: 96.850%
+FineIBT SID mistrained |  3-deref-signal: 24.670%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 97.280%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 95.600%
+FineIBT SID mistrained |  5-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 95.120%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.000%
+FineIBT SID =    caca0 |  7-deref-signal: 94.890%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.000%
+FineIBT SID =    caca0 |  8-deref-signal: 95.470%
+FineIBT SID mistrained |  8-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.010%
+FineIBT SID =    caca0 |  9-deref-signal: 94.130%
+FineIBT SID mistrained |  9-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.000%
+FineIBT SID =    caca0 | 10-deref-signal: 95.560%
+FineIBT SID mistrained | 10-deref-signal:  0.000%
+
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.000%
+FineIBT SID =    caca0 |  1-deref-signal: 95.110%
+FineIBT SID mistrained |  1-deref-signal: 39.060%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.000%
+FineIBT SID =    caca0 |  2-deref-signal: 97.160%
+FineIBT SID mistrained |  2-deref-signal: 32.710%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.010%
+FineIBT SID =    caca0 |  3-deref-signal: 93.940%
+FineIBT SID mistrained |  3-deref-signal: 24.580%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 96.580%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 96.370%
+FineIBT SID mistrained |  5-deref-signal:  0.010%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 95.720%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.000%
+FineIBT SID =    caca0 |  7-deref-signal: 97.480%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.000%
+FineIBT SID =    caca0 |  8-deref-signal: 97.170%
+FineIBT SID mistrained |  8-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.000%
+FineIBT SID =    caca0 |  9-deref-signal: 96.560%
+FineIBT SID mistrained |  9-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.000%
+FineIBT SID =    caca0 | 10-deref-signal: 97.550%
+FineIBT SID mistrained | 10-deref-signal:  0.000%
+
+ubuntu@i9-13900K-2:~/translatient/test$ ./fineibt_test 
+FineIBT experiment with transient load chain of length 1.
+FineIBT SID =        0 |  1-deref-signal:  0.000%
+FineIBT SID =    caca0 |  1-deref-signal: 96.260%
+FineIBT SID mistrained |  1-deref-signal: 12.730%
+
+FineIBT experiment with transient load chain of length 2.
+FineIBT SID =        0 |  2-deref-signal:  0.010%
+FineIBT SID =    caca0 |  2-deref-signal: 96.370%
+FineIBT SID mistrained |  2-deref-signal:  0.030%
+
+FineIBT experiment with transient load chain of length 3.
+FineIBT SID =        0 |  3-deref-signal:  0.000%
+FineIBT SID =    caca0 |  3-deref-signal: 95.400%
+FineIBT SID mistrained |  3-deref-signal:  0.030%
+
+FineIBT experiment with transient load chain of length 4.
+FineIBT SID =        0 |  4-deref-signal:  0.000%
+FineIBT SID =    caca0 |  4-deref-signal: 96.220%
+FineIBT SID mistrained |  4-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 5.
+FineIBT SID =        0 |  5-deref-signal:  0.000%
+FineIBT SID =    caca0 |  5-deref-signal: 95.260%
+FineIBT SID mistrained |  5-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 6.
+FineIBT SID =        0 |  6-deref-signal:  0.000%
+FineIBT SID =    caca0 |  6-deref-signal: 96.150%
+FineIBT SID mistrained |  6-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 7.
+FineIBT SID =        0 |  7-deref-signal:  0.000%
+FineIBT SID =    caca0 |  7-deref-signal: 96.100%
+FineIBT SID mistrained |  7-deref-signal:  0.000%
+
+FineIBT experiment with transient load chain of length 8.
+FineIBT SID =        0 |  8-deref-signal:  0.010%
+FineIBT SID =    caca0 |  8-deref-signal: 96.590%
+FineIBT SID mistrained |  8-deref-signal:  0.010%
+
+FineIBT experiment with transient load chain of length 9.
+FineIBT SID =        0 |  9-deref-signal:  0.010%
+FineIBT SID =    caca0 |  9-deref-signal: 96.840%
+FineIBT SID mistrained |  9-deref-signal:  0.010%
+
+FineIBT experiment with transient load chain of length 10.
+FineIBT SID =        0 | 10-deref-signal:  0.000%
+FineIBT SID =    caca0 | 10-deref-signal: 96.230%
+FineIBT SID mistrained | 10-deref-signal:  0.000%
+

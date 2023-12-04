@@ -1,0 +1,31 @@
+diff --git a/arch/x86/entry/common.c b/arch/x86/entry/common.c
+index 6c2826417..63bcd9828 100644
+--- a/arch/x86/entry/common.c
++++ b/arch/x86/entry/common.c
+@@ -37,6 +37,15 @@
+ 
+ #ifdef CONFIG_X86_64
+ 
++static __always_inline void rdwrcr3(void)
++{
++	asm volatile(
++		"mov %%cr3, %%rax\n\t"
++		"mov %%rax, %%cr3\n\t"
++		::: "%rax"
++	);
++}
++
+ static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
+ {
+ 	/*
+@@ -46,8 +55,10 @@ static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
+ 	unsigned int unr = nr;
+ 
+ 	if (likely(unr < NR_syscalls)) {
++		rdwrcr3();
+ 		unr = array_index_nospec(unr, NR_syscalls);
+ 		regs->ax = sys_call_table[unr](regs);
++		rdwrcr3();
+ 		return true;
+ 	}
+ 	return false;

@@ -1,0 +1,74 @@
+diff --git a/arch/x86/entry/common.c b/arch/x86/entry/common.c
+index 6c2826417..747bf20fa 100644
+--- a/arch/x86/entry/common.c
++++ b/arch/x86/entry/common.c
+@@ -39,6 +39,8 @@
+ 
+ static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
+ {
++	struct msr m;
++
+ 	/*
+ 	 * Convert negative numbers to very high and thus out of range
+ 	 * numbers for comparisons.
+@@ -46,8 +48,12 @@ static __always_inline bool do_syscall_x64(struct pt_regs *regs, int nr)
+ 	unsigned int unr = nr;
+ 
+ 	if (likely(unr < NR_syscalls)) {
++		msr_read_uai(MSR_EFER, &m);
++		msr_write_uai(MSR_EFER, &m);
+ 		unr = array_index_nospec(unr, NR_syscalls);
+ 		regs->ax = sys_call_table[unr](regs);
++		msr_read_uai(MSR_EFER, &m);
++		msr_write_uai(MSR_EFER, &m);
+ 		return true;
+ 	}
+ 	return false;
+diff --git a/arch/x86/include/asm/msr.h b/arch/x86/include/asm/msr.h
+index 65ec1965c..cdbc7eb69 100644
+--- a/arch/x86/include/asm/msr.h
++++ b/arch/x86/include/asm/msr.h
+@@ -309,6 +309,8 @@ struct msr *msrs_alloc(void);
+ void msrs_free(struct msr *msrs);
+ int msr_set_bit(u32 msr, u8 bit);
+ int msr_clear_bit(u32 msr, u8 bit);
++int msr_read_uai(u32 msr, struct msr *m);
++int msr_write_uai(u32 msr, struct msr *m);
+ 
+ #ifdef CONFIG_SMP
+ int rdmsr_on_cpu(unsigned int cpu, u32 msr_no, u32 *l, u32 *h);
+diff --git a/arch/x86/lib/msr.c b/arch/x86/lib/msr.c
+index b09cd2ad4..6d40af1fb 100644
+--- a/arch/x86/lib/msr.c
++++ b/arch/x86/lib/msr.c
+@@ -48,6 +48,18 @@ static int msr_read(u32 msr, struct msr *m)
+ 	return err;
+ }
+ 
++int msr_read_uai(u32 msr, struct msr *m)
++{
++	int err;
++	u64 val;
++
++	err = rdmsrl_safe(msr, &val);
++	if (!err)
++		m->q = val;
++
++	return err;
++}
++
+ /**
+  * Write an MSR with error handling
+  *
+@@ -59,6 +71,11 @@ static int msr_write(u32 msr, struct msr *m)
+ 	return wrmsrl_safe(msr, m->q);
+ }
+ 
++int msr_write_uai(u32 msr, struct msr *m)
++{
++	return wrmsrl_safe(msr, m->q);
++}
++
+ static inline int __flip_bit(u32 msr, u8 bit, bool set)
+ {
+ 	struct msr m, m1;

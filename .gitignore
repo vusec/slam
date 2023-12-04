@@ -1,0 +1,10 @@
+kernel/*.cmd
+kernel/Module.symvers
+kernel/modules.order
+kernel/*.ko
+kernel/*.mod*
+kernel/*.o
+mitigation/fineibt/fineibt
+slam/amd/covert/covert
+slam/intel/covert/covert
+slam/intel/exploit/slam

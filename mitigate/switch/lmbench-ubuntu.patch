@@ -1,0 +1,26 @@
+diff --git a/scripts/build b/scripts/build
+index 16a6600..561cdb3 100755
+--- a/scripts/build
++++ b/scripts/build
+@@ -18,7 +18,7 @@ done
+ 
+ trap 'rm -f ${BASE}$$.s ${BASE}$$.c ${BASE}$$.o ${BASE}$$; exit 1' 1 2 15
+ 
+-LDLIBS=-lm
++LDLIBS="-lm -ltirpc"
+ 
+ # check for HP-UX's ANSI compiler
+ echo "main(int ac, char *av[]) { int i; }" > ${BASE}$$.c
+diff --git a/src/Makefile b/src/Makefile
+index 2555014..dcf3226 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -58,6 +58,8 @@ SAMPLES=lmbench/Results/aix/rs6000 lmbench/Results/hpux/snake \
+ 	lmbench/Results/irix/indigo2 lmbench/Results/linux/pentium \
+ 	lmbench/Results/osf1/alpha lmbench/Results/solaris/ss20* 
+ 
++CPPFLAGS:=$(CPPFLAGS) -I /usr/include/tirpc/
++
+ COMPILE=$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+ 
+ INCS =	bench.h lib_mem.h lib_tcp.h lib_udp.h stats.h timing.h

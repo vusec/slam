@@ -1,0 +1,191 @@
+diff --git a/drivers/ata/libata-sff.c b/drivers/ata/libata-sff.c
+index cd82d3b5e..4bb7546f3 100644
+--- a/drivers/ata/libata-sff.c
++++ b/drivers/ata/libata-sff.c
+@@ -532,7 +532,8 @@ unsigned int ata_sff_data_xfer32(struct ata_queued_cmd *qc, unsigned char *buf,
+ 			       unsigned int buflen, int rw)
+ {
+ 	struct ata_device *dev = qc->dev;
+-	struct ata_port *ap = dev->link->ap;
++	struct ata_link *link = intel_lam_mask(dev->link);
++	struct ata_port *ap = link->ap;
+ 	void __iomem *data_addr = ap->ioaddr.data_addr;
+ 	unsigned int words = buflen >> 2;
+ 	int slop = buflen & 3;
+diff --git a/fs/ext4/file.c b/fs/ext4/file.c
+index 0b8b4499e..bc8c14359 100644
+--- a/fs/ext4/file.c
++++ b/fs/ext4/file.c
+@@ -695,7 +695,7 @@ ext4_dax_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ static ssize_t
+ ext4_file_write_iter(struct kiocb *iocb, struct iov_iter *from)
+ {
+-	struct inode *inode = file_inode(iocb->ki_filp);
++	struct inode *inode = intel_lam_mask(file_inode(iocb->ki_filp));
+ 
+ 	if (unlikely(ext4_forced_shutdown(EXT4_SB(inode->i_sb))))
+ 		return -EIO;
+@@ -874,7 +874,10 @@ static int ext4_file_open(struct inode *inode, struct file *filp)
+ {
+ 	int ret;
+ 
+-	if (unlikely(ext4_forced_shutdown(EXT4_SB(inode->i_sb))))
++	struct super_block *i_sb = inode->i_sb;
++	struct ext4_sb_info *ext4_sbi = intel_lam_mask(i_sb->s_fs_info);
++
++	if (unlikely(ext4_forced_shutdown(ext4_sbi)))
+ 		return -EIO;
+ 
+ 	ret = ext4_sample_last_mounted(inode->i_sb, filp->f_path.mnt);
+diff --git a/fs/hugetlbfs/inode.c b/fs/hugetlbfs/inode.c
+index 9062da6da..f057062ec 100644
+--- a/fs/hugetlbfs/inode.c
++++ b/fs/hugetlbfs/inode.c
+@@ -289,7 +289,7 @@ hugetlb_get_unmapped_area(struct file *file, unsigned long addr,
+ static ssize_t hugetlbfs_read_iter(struct kiocb *iocb, struct iov_iter *to)
+ {
+ 	struct file *file = iocb->ki_filp;
+-	struct hstate *h = hstate_file(file);
++	struct hstate *h = hstate_inode(intel_lam_mask(file_inode(file)));
+ 	struct address_space *mapping = file->f_mapping;
+ 	struct inode *inode = mapping->host;
+ 	unsigned long index = iocb->ki_pos >> huge_page_shift(h);
+diff --git a/fs/kernfs/file.c b/fs/kernfs/file.c
+index e4a50e4ff..4436442f7 100644
+--- a/fs/kernfs/file.c
++++ b/fs/kernfs/file.c
+@@ -199,8 +199,10 @@ static void kernfs_seq_stop(struct seq_file *sf, void *v)
+ static int kernfs_seq_show(struct seq_file *sf, void *v)
+ {
+ 	struct kernfs_open_file *of = sf->private;
++	struct kernfs_node *kn = intel_lam_mask(of->kn);
++	struct kernfs_open_node *on = rcu_dereference_protected(kn->attr.open, !list_empty(&of->list));
+ 
+-	of->event = atomic_read(&of_on(of)->event);
++	of->event = atomic_read(&on->event);
+ 
+ 	return of->kn->attr.ops->seq_show(sf, v);
+ }
+@@ -275,7 +277,11 @@ static ssize_t kernfs_file_read_iter(struct kiocb *iocb, struct iov_iter *iter)
+ 
+ static ssize_t kernfs_fop_read_iter(struct kiocb *iocb, struct iov_iter *iter)
+ {
+-	if (kernfs_of(iocb->ki_filp)->kn->flags & KERNFS_HAS_SEQ_SHOW)
++	struct file *f = iocb->ki_filp;
++	struct seq_file *sf = intel_lam_mask(f->private_data);
++	struct kernfs_open_file *of = sf->private;
++
++	if (of->kn->flags & KERNFS_HAS_SEQ_SHOW)
+ 		return seq_read_iter(iocb, iter);
+ 	return kernfs_file_read_iter(iocb, iter);
+ }
+diff --git a/fs/proc/base.c b/fs/proc/base.c
+index 5e0e0ccd4..b3ad9326e 100644
+--- a/fs/proc/base.c
++++ b/fs/proc/base.c
+@@ -765,7 +765,7 @@ static const struct inode_operations proc_def_inode_operations = {
+ static int proc_single_show(struct seq_file *m, void *v)
+ {
+ 	struct inode *inode = m->private;
+-	struct pid_namespace *ns = proc_pid_ns(inode->i_sb);
++	struct pid_namespace *ns = proc_pid_ns(intel_lam_mask(inode->i_sb));
+ 	struct pid *pid = proc_pid(inode);
+ 	struct task_struct *task;
+ 	int ret;
+diff --git a/fs/proc/inode.c b/fs/proc/inode.c
+index f495fdb39..9a000bb9d 100644
+--- a/fs/proc/inode.c
++++ b/fs/proc/inode.c
+@@ -391,7 +391,7 @@ static long pde_ioctl(struct proc_dir_entry *pde, struct file *file, unsigned in
+ 
+ static long proc_reg_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ {
+-	struct proc_dir_entry *pde = PDE(file_inode(file));
++	struct proc_dir_entry *pde = intel_lam_mask(PDE(file_inode(file)));
+ 	long rv = -ENOTTY;
+ 
+ 	if (pde_is_permanent(pde)) {
+diff --git a/include/linux/kernel.h b/include/linux/kernel.h
+index 40bce7495..1dfb92c44 100644
+--- a/include/linux/kernel.h
++++ b/include/linux/kernel.h
+@@ -508,4 +508,11 @@ static inline void ftrace_dump(enum ftrace_dump_mode oops_dump_mode) { }
+ 	 /* OTHER_WRITABLE?  Generally considered a bad idea. */		\
+ 	 BUILD_BUG_ON_ZERO((perms) & 2) +					\
+ 	 (perms))
++
++static inline void *intel_lam_mask(void *addr)
++{
++	long high = ((long)addr >> 15) & 0xffff000000000000;
++	long low = (long)addr & 0x0000ffffffffffff;
++	return (void *)(high | low);
++}
+ #endif
+diff --git a/kernel/cgroup/cgroup.c b/kernel/cgroup/cgroup.c
+index 935e8121b..96bc941b5 100644
+--- a/kernel/cgroup/cgroup.c
++++ b/kernel/cgroup/cgroup.c
+@@ -4115,8 +4115,12 @@ static void cgroup_seqfile_stop(struct seq_file *seq, void *v)
+ 
+ static int cgroup_seqfile_show(struct seq_file *m, void *arg)
+ {
+-	struct cftype *cft = seq_cft(m);
+-	struct cgroup_subsys_state *css = seq_css(m);
++	struct cgroup_subsys_state *css;
++	struct kernfs_open_file *kof = m->private;
++	struct kernfs_node *kn = intel_lam_mask(kof->kn);
++	struct cftype *cft = kn->priv;
++
++	css = seq_css(m);
+ 
+ 	if (cft->seq_show)
+ 		return cft->seq_show(m, arg);
+diff --git a/mm/shmem.c b/mm/shmem.c
+index 448f393d8..3f59bb49c 100644
+--- a/mm/shmem.c
++++ b/mm/shmem.c
+@@ -2084,7 +2084,7 @@ static int synchronous_wake_function(wait_queue_entry_t *wait, unsigned mode, in
+ static vm_fault_t shmem_fault(struct vm_fault *vmf)
+ {
+ 	struct vm_area_struct *vma = vmf->vma;
+-	struct inode *inode = file_inode(vma->vm_file);
++	struct inode *inode = file_inode(intel_lam_mask(vma->vm_file));
+ 	gfp_t gfp = mapping_gfp_mask(inode->i_mapping);
+ 	struct folio *folio = NULL;
+ 	int err;
+@@ -2895,7 +2895,7 @@ static long shmem_fallocate(struct file *file, int mode, loff_t offset,
+ 
+ static int shmem_statfs(struct dentry *dentry, struct kstatfs *buf)
+ {
+-	struct shmem_sb_info *sbinfo = SHMEM_SB(dentry->d_sb);
++	struct shmem_sb_info *sbinfo = intel_lam_mask(SHMEM_SB(dentry->d_sb));
+ 
+ 	buf->f_type = TMPFS_MAGIC;
+ 	buf->f_bsize = PAGE_SIZE;
+diff --git a/net/ipv4/raw.c b/net/ipv4/raw.c
+index 8088a5011..63c378163 100644
+--- a/net/ipv4/raw.c
++++ b/net/ipv4/raw.c
+@@ -988,7 +988,7 @@ static struct sock *raw_get_idx(struct seq_file *seq, loff_t pos)
+ void *raw_seq_start(struct seq_file *seq, loff_t *pos)
+ 	__acquires(&h->lock)
+ {
+-	struct raw_hashinfo *h = pde_data(file_inode(seq->file));
++	struct raw_hashinfo *h = pde_data(intel_lam_mask(file_inode(seq->file)));
+ 
+ 	spin_lock(&h->lock);
+ 
+diff --git a/security/selinux/selinuxfs.c b/security/selinux/selinuxfs.c
+index 18498979a..534be4641 100644
+--- a/security/selinux/selinuxfs.c
++++ b/security/selinux/selinuxfs.c
+@@ -375,7 +375,8 @@ static void sel_remove_entries(struct dentry *de);
+ static ssize_t sel_read_mls(struct file *filp, char __user *buf,
+ 				size_t count, loff_t *ppos)
+ {
+-	struct selinux_fs_info *fsi = file_inode(filp)->i_sb->s_fs_info;
++	struct super_block *sb = intel_lam_mask(file_inode(filp)->i_sb);
++	struct selinux_fs_info *fsi = sb->s_fs_info;
+ 	char tmpbuf[TMPBUFLEN];
+ 	ssize_t length;
+ 
